@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+  --primary-glow: 0, 255, 242; /* Bright neon cyan */
+  --secondary-glow: 255, 0, 255; /* Bright neon pink */
+  --tertiary-glow: 0, 255, 128; /* Bright neon green */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  background: linear-gradient(130deg, rgba(var(--primary-glow), 0.8), rgba(var(--secondary-glow), 0.8), rgba(var(--tertiary-glow), 0.8));
+  font-family: 'Inter', sans-serif;
+  background-size: 200% 200%;
+  animation: gradientAnimation 6s ease infinite;
+}
+
+/* Enhanced Glow Effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(var(--primary-glow), 0.6), transparent 60%) center center / 40% 40% no-repeat,
+              radial-gradient(circle, rgba(var(--secondary-glow), 0.6), transparent 60%) center center / 40% 40% no-repeat,
+              radial-gradient(circle, rgba(var(--tertiary-glow), 0.6), transparent 60%) center center / 40% 40% no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: -1;
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+/* Gradient Animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Brighter Pulse Animation for the Glow */
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+.animate-borderGlow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
